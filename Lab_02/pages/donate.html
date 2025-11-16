@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate</title>
+    <link rel="shortcut icon" href="../img/frog-icon.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+
+    <header>
+        <div id="navbar-placeholder"></div>
+    </header>
+
+
+    <main>
+        <section class="film">
+
+            <h3>Before you scroll — take a moment to smile!</h3>
+
+            <iframe src="https://www.youtube.com/embed/LfYE5DPfg70?si=6lMRKQgUV1SJiypF"
+                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+                    encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+        <section class="about">
+            <h2>🐸 Help Us Keep Frogs Hoppy and Happy!</h2>
+            <p>Frogs are much more than just cute, jumping creatures you hear croaking on summer nights.
+                They are vital indicators of the health of our planet — when frog populations decline,
+                it’s a clear sign that our environment is in trouble. These incredible amphibians help control insect
+                populations, serve as food for other species, and even inspire scientific discoveries in medicine and
+                materials research.
+            </p>
+            <p>
+                But today, frogs around the world are facing serious threats. Pollution, climate change, habitat
+                destruction, and deadly fungal diseases are wiping out entire species faster than scientists can study
+                them. Without help, many of these unique creatures could disappear forever — taking a piece of our
+                natural world with them.
+            </p>
+            <p>
+                That’s where you come in. 💚
+                Your donation helps us protect frogs through education, habitat restoration, and awareness campaigns.
+                Together, we can create safe spaces for frogs to live, breed, and thrive — ensuring that future
+                generations will still hear their beautiful songs in the wild.
+            </p>
+            <p>
+                Even a small donation can make a big splash! 💧
+                Let’s keep frogs — and their funny little dances — around for generations to come.
+            </p>
+        </section>
+
+        <section class="donate">
+
+            <p class="donate-text">
+                We’re currently raising funds to build a safe breeding pond for rescued frogs.
+            </p>
+
+            <p class="donate-text">
+                If you’d like to support us, please click the button below.
+            </p>
+
+            <button class="donate-btn">Donate</button>
+
+            <div class="donation-progress">
+                <h4>Collected so far:</h4>
+
+                <div class="progress-bar-bg">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+
+                <p id="progress-text" class="progress-text"></p>
+            </div>
+
+        </section>
+
+
+
+    </main>
+
+
+    <footer>
+        <div id="footer-placeholder"></div>
+    </footer>
+
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    <script>
+        const collected = 125;
+        const goal = 500;
+
+        const percent = (collected / goal) * 100;
+
+        document.getElementById("progress-bar").style.width = percent + "%";
+        document.getElementById("progress-text").innerText =
+            "$" + collected + " / $" + goal;
+
+    </script>
+
+
+</body>
+</html>
