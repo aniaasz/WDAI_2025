@@ -1,10 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // sprawdź, czy jesteś w folderze "pages"
-    // const isInPagesFolder = window.location.pathname.includes("/pages/");
-
-    // // jeśli jesteś w /pages/, to dodaj "../" do ścieżek
-    // const prefix = isInPagesFolder ? "../" : "";
-
     const footerHTML = `
         <div class="footer-content">
           

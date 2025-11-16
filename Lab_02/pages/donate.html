@@ -85,14 +85,27 @@
     <script src="../js/navbar.js"></script>
     <script src="../js/footer.js"></script>
     <script>
-        const collected = 125;
-        const goal = 500;
+        const goal = 1000;
+        const bar   = document.getElementById('progress-bar');
+        const text  = document.getElementById('progress-text');
+        const btn   = document.querySelector('.donate-btn');
 
-        const percent = (collected / goal) * 100;
+        let collected = Number(localStorage.getItem('donationTotal')) || 125;
 
-        document.getElementById("progress-bar").style.width = percent + "%";
-        document.getElementById("progress-text").innerText =
-            "$" + collected + " / $" + goal;
+        function render() {
+            const safeGoal = goal > 0 ? goal : 1;
+            const p = Math.max(0, Math.min(100, (collected / safeGoal) * 100));
+            bar.style.width = p.toFixed(1) + '%';
+            text.textContent = `$${collected} / $${goal}`;
+        }
+
+        btn.addEventListener('click', () => {
+            collected += 5;
+            localStorage.setItem('donationTotal', String(collected));
+            render();
+        });
+
+        render();
 
     </script>
 

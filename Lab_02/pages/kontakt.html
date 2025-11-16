@@ -32,20 +32,30 @@
                 <h1>Contact us</h1>
 
                 <form action="/submit-form" method="post" class="form">
-                    <label for="Name">Name:</label>
+                    <label for="name">Name:</label>
                     <input type="text" id="name" name="name" placeholder="name" pattern="[A-Za-z]+" required><br>
-                    <label for="Surname">Surname:</label>
+                    <label for="surname">Surname:</label>
                     <input type="text" id="surname" name="surname" placeholder="surname" pattern="[A-Za-z]+" required><br>
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email"  placeholder="email" required><br>
                     <label for="phone">Phone:</label>
-                    <input type="tel" id="phone" name="phone" placeholder="xxx-xxx-xxx" pattern="\d{3}-\d{3}-\d{3}"><br>
+                    <input type="tel" id="phone" name="phone" placeholder="xxx-xxx-xxx"
+                           title="format: 123-456-789" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"><br>
 
 
-<!--                    temat wiadomości z 3 selectami-->
+                    <label for="topic">Subject:</label>
+                    <select id="topic" name="topic" required>
+                        <option disabled selected hidden>Choose a subject…</option>
+                        <option>Habitat and Care Questions</option>
+                        <option>Frog Species Identification</option>
+                        <option>Problem with the Website</option>
+                        <option>Collaboration Request</option>
+                        <option>Other</option>
+                    </select>
 
 
-                    <label>Message: <textarea name="message" rows="4" cols="50"></textarea></label>
+                    <label for="message">Message: <textarea id="message" name="message" rows="4" cols="50"
+                                                            placeholder="Write your message…"></textarea></label>
 
                     <input type="submit" value="Submit">
                     <input type="reset" value="Reset form" />
