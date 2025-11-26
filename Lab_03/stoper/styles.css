@@ -1,0 +1,72 @@
+body{
+    background-color: rgba(209, 119, 165, 0.75);
+    min-height: 100vh; margin: 0;
+    display: grid;
+    place-items: center;
+}
+
+
+#stopwatch-content{
+    font-size: 40px;
+    font-family: "Century Schoolbook", fantasy;
+    color: aliceblue;
+    text-shadow:
+            1px 1px 2px #f700ff,
+            0 0 1em #6600ff,
+            0 0 0.2em #8c00ff;
+}
+
+.stopwatch{
+    margin-top: 65px;
+    display: flex;
+    background-color: rgb(209, 119, 165);
+    justify-content: space-evenly;
+    border-radius: 10px;
+    flex-direction: column;
+    box-shadow: 0px 0px 20px 20px rgb(175 95 166 / 44%);
+    width: 500px;
+    height: 500px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.button {
+    background: rgb(206, 142, 211);
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 6px 0 #9f61a8, 0 5px 15px -4px #000;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 800;
+    height: 50px;
+    width: 150px;
+    transition: box-shadow 0.2s ease-in-out, margin-top 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
+
+}
+
+.button:hover,
+.button:focus {
+    opacity: 0.9;
+    outline: 0;
+}
+
+.button:active {
+    box-shadow: none;
+}
+
+
+.clock-face {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 6px solid rgba(90, 33, 89, 0.81);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.clock-content {
+    font: 600 48px/1.2 system-ui, sans-serif;
+}

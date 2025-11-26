@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>StopWatch</title>
+    <link rel="stylesheet" href="../stoper/styles.css"/>
+    <link rel="shortcut icon" type="png" href="stoper-ikona.png"/>
+</head>
+<body>
+
+<main>
+
+
+    <div class="stopwatch">
+
+        <section>
+            <div class="clock-face">
+                <div id="stopwatch-content">0 s</div>
+            </div>
+        </section>
+
+
+        <section>
+            <button onclick="startTimer()" class="button">Start</button>
+            <button onclick="stopTimer()" class="button">Stop</button>
+            <button onclick="resetTimer()" class="button">Reset</button>
+        </section>
+
+
+
+    </div>
+
+
+</main>
+
+
+<script>
+
+    let seconds=0;
+    // let seconds = 3675;
+    let timer = null;
+
+
+    function updateTimer(){
+        if(seconds < 60){
+            document.getElementById("stopwatch-content").textContent = seconds + " s";
+        }
+        else{
+            let hours = Math.floor(seconds / 3600);
+            let mins = Math.floor((seconds % 3600) / 60);
+            let secs = seconds % 60;
+
+            if(hours>0){
+                document.getElementById("stopwatch-content").textContent = hours + " h " + mins +" m " + secs + " s";
+            }
+            else{
+                document.getElementById("stopwatch-content").textContent = mins +" m " + secs + " s";
+            }
+
+        }
+
+    }
+
+
+    function startTimer(){
+        if(timer==null){
+            timer=setInterval(()=>{
+                seconds++;
+                updateTimer();
+            },1000) // update co sekundę
+        }
+    }
+
+    function stopTimer(){
+        clearInterval(timer);
+        timer=null;
+    }
+
+    function resetTimer(){
+        stopTimer();
+        seconds=0;
+        updateTimer()
+    }
+
+</script>
+
+
+</body>
+
+
+
+</html>
