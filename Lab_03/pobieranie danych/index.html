@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Produkty z API</title>
+    <style>
+        body{background-color: rgba(221, 190, 170, 0.83)}
+        table { border-collapse: collapse; width: 90%;background-color: rgb(221, 190, 170);margin: auto;}
+        th, td { border: 1px solid #000000; padding: 8px; text-align: left; }
+        th { background-color: #a88674; }
+        img { width: 60px; height: 60px; object-fit: cover; }
+        .controls{ margin-bottom: 10px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <input id="search" type="search" placeholder="Szukaj...">
+        <button onclick="showData()">Filtruj</button>
+        <button onclick="clearFilters(1)">Wyczyść</button>
+    </div>
+
+    <div class="controls">
+        <select id="categorySelect">
+            <option value="all" disabled selected hidden>Wybierz kategorie...</option>
+            <option value="title">Tytuł</option>
+            <option value="description">Opis</option>
+            <option value="price">Cena</option>
+        </select>
+        <select id="sortSelect">
+            <option value="original" disabled selected hidden>Wybierz kolejność...</option>
+            <option value="asc">Rosnąco</option>
+            <option value="desc">Malejąco</option>
+            <option value="original">Oryginalna kolejność</option>
+        </select>
+        <button onclick="showData()">Sortuj</button>
+        <button onclick="clearFilters(2)">Wyczyść</button>
+    </div>
+
+
+    <table id="productsTable">
+        <thead>
+        <tr>
+            <th>Zdjęcie</th>
+            <th>Tytuł</th>
+            <th>Opis</th>
+            <th>Cena</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+
+
+
+<script>
+
+    async function getData(){
+        const url = "https://dummyjson.com/products";
+        return (await fetch(url)).json();
+    }
+
+    async function showData() {
+        const data = await getData();
+        const products = data.products.slice(0, 30);
+
+        const tableBody = document.getElementById('tableBody');
+        const searchPhrase = document.getElementById('search').value;
+        const category = document.getElementById('categorySelect').value;
+        const sortOrder = document.getElementById('sortSelect').value;
+
+
+        const filteredProducts = filterAndSortData(products, searchPhrase, category,sortOrder);
+        tableBody.innerHTML = '';
+
+
+        if (filteredProducts.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="4">Brak wyników</td></tr>';
+            return;
+        }
+
+
+        filteredProducts.forEach(product => {
+            const row = tableBody.insertRow();
+            row.innerHTML = `<td><img src="${product.images[0]}" alt="${product.title}"></td>
+                            <td>${product.title}</td>
+                            <td>${product.description}</td>
+                            <td>${product.price}</td>
+        `;
+        });
+    }
+
+    function clearFilters(i) {
+        if(i === 1){
+            document.getElementById('search').value = '';
+        }
+        if(i === 2){
+            document.getElementById('categorySelect').value = 'all';
+            document.getElementById('sortSelect').value = 'original';
+        }
+        else{
+            document.getElementById('search').value = '';
+            document.getElementById('categorySelect').value = 'all';
+            document.getElementById('sortSelect').value = 'original';
+
+        }
+        showData()
+    }
+
+
+    function filterAndSortData(data,searchPhrase,category,sortOrder){
+
+
+        let filtered = data.filter( item =>
+            item.title.toLowerCase().includes(searchPhrase.toLowerCase()) ||
+            item.description.toLowerCase().includes(searchPhrase.toLowerCase()) );
+
+
+        if (!category || category === 'all' || !sortOrder || sortOrder === 'original') {
+            return filtered;
+        }
+
+        switch (sortOrder) {
+            case 'asc':
+                if(category === 'price'){
+                    return filtered.sort((a, b) => a.price - b.price);
+                }
+                return filtered.sort((a, b) => a[category].localeCompare(b[category]));
+            case 'desc':
+                if(category === 'price'){
+                    return filtered.sort((a, b) =>b.price-a.price);
+                }
+                return filtered.sort((a, b) => b[category].localeCompare(a[category]));
+
+        }
+
+
+    }
+
+
+    clearFilters();
+
+
+</script>
+</body>
+</html>

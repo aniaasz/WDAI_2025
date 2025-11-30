@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="../passwords/styles.css"/>
+    <link rel="shortcut icon" type="png" href="password-icon.png"/>
+</head>
+<body>
+
+<main>
+    <div class="box">
+
+        <h1>Password Generator</h1>
+
+        <section class="length">
+
+            Password length:<br />
+            <label> <br />
+                min:<br />
+                <input id="minLen" min="6" type="number" value="6" />
+                <br />
+                max:<br />
+                <input id="maxLen" max="30" type="number" value="12" />
+                <br />
+            </label><br />
+
+
+        </section>
+
+
+        <section class="checkbox">
+
+            <label >
+                <input id="upper" type="checkbox" checked /> Include Uppercase
+            </label><br />
+            <label>
+                <input id="lower" type="checkbox" checked /> Include Lowercase
+            </label><br />
+            <label>
+                <input id="nums" type="checkbox" /> Include Numbers
+            </label><br />
+            <label>
+                <input id="special" type="checkbox" /> Include Special Characters
+            </label><br />
+
+
+        </section>
+
+        <section>
+
+            <button class="btn" onclick="generate()">Generate Password</button>
+            <button class="btn" onclick="reset()">Reset</button>
+
+        </section>
+
+
+
+
+    </div>
+
+
+    <script>
+
+
+        let upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let lowerChars = "abcdefghijklmnopqrstuvwxyz";
+        let numChars = "0123456789";
+        let specialChars = "!@#$%^&*()-_=+[]{}|;:,.<>?";
+
+
+        const minLenInput = document.getElementById("minLen");
+        const maxLenInput = document.getElementById("maxLen");
+
+        minLenInput.addEventListener('input', () => {
+            if (parseInt(minLenInput.value) < 6) minLenInput.value = 6;
+        });
+        maxLenInput.addEventListener('input', () => {
+            if (parseInt(maxLenInput.value) > 30) maxLenInput.value = 30;
+        });
+
+
+
+        function generate() {
+            let minLen = parseInt(minLenInput.value);
+            let maxLen = parseInt(maxLenInput.value);
+            const upper = document.getElementById("upper").checked;
+            const lower = document.getElementById("lower").checked;
+            const nums = document.getElementById("nums").checked;
+            const special = document.getElementById("special").checked;
+
+
+
+            const password = create(minLen, maxLen, upper, lower, nums, special);
+            alert(password);
+        }
+
+
+        function create(minLen, maxLen, upper, lower, nums, special) {
+
+            const passwordLength = Math.floor(Math.random() * (maxLen-minLen + 1)) + minLen;
+
+            let chars = "";
+
+            if (upper) chars += upperChars;
+            if (lower) chars += lowerChars;
+            if (nums) chars += numChars;
+            if (special) chars += specialChars;
+
+            if (chars.length === 0) return "Select at least one character type!";
+
+            const charsLen = chars.length;
+
+            let password = "";
+            for (let i = 0; i < passwordLength; i++) {
+
+                let index = Math.floor(Math.random() * charsLen);
+                password += chars[index];
+
+            }
+
+            return password;
+        }
+
+        function reset() {
+            document.getElementById("minLen").value = 6;
+            document.getElementById("maxLen").value = 12;
+            document.getElementById("upper").checked = true;
+            document.getElementById("lower").checked = true;
+            document.getElementById("nums").checked = false;
+            document.getElementById("special").checked = false;
+        }
+
+
+    </script>
+
+
+</main>
+
+</body>
+</html>
