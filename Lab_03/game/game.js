@@ -18,7 +18,7 @@ let score = 0;
 
 // RURY
 let pipes = [];        // tablica z rurami
-let frameCounter = 0;
+let frameCounter = 75;
 const pipeInterval = 80;
 const minGap = 70;
 const maxGap = 140;
@@ -91,7 +91,6 @@ function draw() {
                  // czy ptak uderza w rurę
                  if (checkCollision(p)) { //jak tak to umiera
                      gameState = "DYING"
-                     hitSound.currentTime = 0;
                      hitSound.play();
 
                  }
@@ -100,7 +99,6 @@ function draw() {
                  if (!p.scored && birdX > p.x + pipeWidth) {
                      score++;
                      p.scored = true;
-                     pointSound.currentTime = 0;
                      pointSound.play();
 
                  }
@@ -130,11 +128,8 @@ function draw() {
         birdSpeed = 0;
         if (gameState === "DYING" || gameState === "PLAYING")  //koniec gry przy uderzeniu w ziemie
         {
-            swooshSound.currentTime = 0;
-            swooshSound.play();
             gameState = "GAME OVER";
             saveScore()
-            dieSound.currentTime = 0;
             dieSound.play();
         }
 
@@ -143,7 +138,6 @@ function draw() {
     // animacja skrzydeł
     if (gameState === "PLAYING"){
         birdFrame += 0.2;
-
     }
 
     const idx = floor(birdFrame) % 3;
@@ -250,13 +244,12 @@ function drawPipes(p){
 
 
     const bottomPipe= gapSize+y;
-    image(pipeImg,x,bottomPipe,pipeWidth,height - baseImg.height-y-gapSize)
-
+    image(pipeImg,x,bottomPipe,pipeWidth,height - baseImg.height-bottomPipe)
     const topPipe= y;
     push();
     translate(x,topPipe);
     scale(1,-1);
-    image(pipeImg,0,0,pipeWidth,y)
+    image(pipeImg,0,0,pipeWidth,topPipe)
     pop();
 
 }
@@ -321,17 +314,12 @@ function keyPressed() {
     if (key === ' '){
         if (gameState === "START") {
             gameState = "PLAYING";
-            swooshSound.currentTime = 0;
-            swooshSound.play();
             birdSpeed = birdJump;
-            wingSound.currentTime = 0;
             wingSound.play();
         } else if (gameState === "PLAYING") {
             birdSpeed = birdJump;
-            wingSound.currentTime = 0;
             wingSound.play();
         } else if (gameState === "GAME OVER") {
-            swooshSound.currentTime = 0;
             swooshSound.play();
             resetGame();
             gameState = "START";
@@ -357,7 +345,7 @@ function saveScore() {
 function resetGame() {
     score = 0;
     pipes = [];
-    frameCounter = 0;
+    frameCounter = 70;
     birdX = width / 4;
     birdY = height * 0.4;
     birdSpeed = 0;
