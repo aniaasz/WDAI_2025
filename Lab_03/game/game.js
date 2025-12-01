@@ -18,8 +18,8 @@ let score = 0;
 
 // RURY
 let pipes = [];        // tablica z rurami
-let frameCounter = 75;
-const pipeInterval = 80;
+let frameCounter = 90;
+const pipeInterval = 90;
 const minGap = 70;
 const maxGap = 140;
 
@@ -270,7 +270,7 @@ function createPipes(){
 
     pipes.push({
         gap: gapSize,
-        x: width,
+        x: width + 50,
         y: gapY,
         scored: false
     })
@@ -345,7 +345,7 @@ function saveScore() {
 function resetGame() {
     score = 0;
     pipes = [];
-    frameCounter = 70;
+    frameCounter = 90;
     birdX = width / 4;
     birdY = height * 0.4;
     birdSpeed = 0;
