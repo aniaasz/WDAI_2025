@@ -1,5 +1,62 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=WebStorm
+### Rejestrowanie użytkownika
+POST http://localhost:3003/api/register
+Content-Type: application/json
 
-###
+{
+  "email": "user3@gmail.com",
+  "password": "Haslo"
+}
+
+
+### Rejestrowanie użytkownika bez hasła
+POST http://localhost:3003/api/register
+Content-Type: application/json
+
+{
+  "email": "user4@gmail.com"
+}
+
+
+
+### Rejestrowanie użytkownika z zajętym emailem
+POST http://localhost:3003/api/register
+Content-Type: application/json
+
+{
+  "email": "user3@gmail.com",
+  "password": "InneHaslo"
+}
+
+
+
+### Logowanie
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "email": "user3@gmail.com",
+  "password": "Haslo"
+}
+
+
+
+### Logowanie z błędnym hasłem
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "email": "user1@example.com",
+  "password": "ZleHaslo"
+}
+
+
+
+### Logowanie nieistniejącego użytkownika
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "email": "zlyuzytkownik@gmail.com",
+  "password": "JakiesHaslo"
+}
+

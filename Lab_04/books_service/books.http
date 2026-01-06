@@ -1,5 +1,82 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=WebStorm
+### Rejestracja użytkownika
+POST http://localhost:3003/api/register
+Content-Type: application/json
 
-###
+{
+  "email": "user1@gmail.com",
+  "password": "HasloHaslo"
+}
+### Logowanie
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "email": "user1@gmail.com",
+  "password": "HasloHaslo"
+}
+
+
+### Dodawanie książek
+POST http://localhost:3001/api/books
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidXNlcjFAZ21haWwuY29tIiwiaWF0IjoxNzY1ODA5MjY5LCJleHAiOjE3NjU4MTI4Njl9.E-diAFxH8JoOpVok9VlI2aY_hxLMUZ9qMqKcObXJSmM
+
+{
+  "title": "The Housemaid",
+  "author": "Freida McFadden",
+  "year": 2022
+}
+
+
+### Dodawanie książek
+POST http://localhost:3001/api/books
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidXNlcjFAZ21haWwuY29tIiwiaWF0IjoxNzY1ODA5MjY5LCJleHAiOjE3NjU4MTI4Njl9.E-diAFxH8JoOpVok9VlI2aY_hxLMUZ9qMqKcObXJSmM
+
+{
+  "title": "The Crash",
+  "author": "Freida McFadden",
+  "year": 2025
+}
+
+### Dodawanie książek
+POST http://localhost:3001/api/books
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidXNlcjFAZ21haWwuY29tIiwiaWF0IjoxNzY1ODA5MjY5LCJleHAiOjE3NjU4MTI4Njl9.E-diAFxH8JoOpVok9VlI2aY_hxLMUZ9qMqKcObXJSmM
+
+{
+  "title": "Strange Houses",
+  "author": "Uketsu",
+  "year": 2021
+}
+
+### Dodawanie książek
+POST http://localhost:3001/api/books
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidXNlcjFAZ21haWwuY29tIiwiaWF0IjoxNzY1ODA5MjY5LCJleHAiOjE3NjU4MTI4Njl9.E-diAFxH8JoOpVok9VlI2aY_hxLMUZ9qMqKcObXJSmM
+
+{
+  "title": "Strange Pictures",
+  "author": "Uketsu",
+  "year": 2022
+}
+
+### Pobierz wszystkie książki
+GET http://localhost:3001/api/books
+
+### Pobierz książkę z id 1
+GET http://localhost:3001/api/books/1
+
+### Pobierz nieistniejącą książkę
+GET http://localhost:3001/api/books/666
+
+### Usuń książkę z id 2
+DELETE http://localhost:3001/api/books/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidXNlcjFAZ21haWwuY29tIiwiaWF0IjoxNzY1ODA5MjY5LCJleHAiOjE3NjU4MTI4Njl9.E-diAFxH8JoOpVok9VlI2aY_hxLMUZ9qMqKcObXJSmM
+### Pobierz wszystkie książki
+GET http://localhost:3001/api/books
+
+### Usuń nieistniejącą książkę
+DELETE http://localhost:3001/api/books/666
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidXNlcjFAZ21haWwuY29tIiwiaWF0IjoxNzY1ODA5MjY5LCJleHAiOjE3NjU4MTI4Njl9.E-diAFxH8JoOpVok9VlI2aY_hxLMUZ9qMqKcObXJSmM
+

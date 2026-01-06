@@ -1,5 +1,82 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=WebStorm
+### Rejestracja użytkownika
+POST http://localhost:3003/api/register
+Content-Type: application/json
 
-###
+{
+  "email": "user2@gmail.com",
+  "password": "HasloHaslo"
+}
+### Logowanie
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "email": "user2@gmail.com",
+  "password": "HasloHaslo"
+}
+
+
+### Dodawanie zamówienia
+POST http://localhost:3002/api/orders
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoidXNlcjJAZ21haWwuY29tIiwiaWF0IjoxNzY1ODEwMzQ4LCJleHAiOjE3NjU4MTM5NDh9.uKd33I8z_TKubt3xugyHYi1k84B8HkFoL7SoBEuZNkA
+
+{
+  "userId": 1,
+  "bookId": 1,
+  "quantity": 2
+}
+
+### Dodawanie drugiego zamówienia dla tego samego użytkownika
+POST http://localhost:3002/api/orders
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImVtYWlsIjoidXNlcjJAZ21haWwuY29tIiwiaWF0IjoxNzY1NzQ3NTQxLCJleHAiOjE3NjU3NTExNDF9.T_R946cDr3hg13TZqREjpfksfjtwE6z4egkrsKtNH9Q
+
+
+{
+  "userId": 1,
+  "bookId": 1,
+  "quantity": 1
+}
+
+### Dodawanie zamówienia na nieistniejącą książkę
+POST http://localhost:3002/api/orders
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoidXNlcjJAZ21haWwuY29tIiwiaWF0IjoxNzY1ODEwMzQ4LCJleHAiOjE3NjU4MTM5NDh9.uKd33I8z_TKubt3xugyHYi1k84B8HkFoL7SoBEuZNkA
+
+{
+  "userId": 1,
+  "bookId": 666,
+  "quantity": 1
+}
+
+
+### Zaktualizowanie ilości w zamówieniu z id 1
+PATCH http://localhost:3002/api/orders/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoidXNlcjJAZ21haWwuY29tIiwiaWF0IjoxNzY1ODEwMzQ4LCJleHAiOjE3NjU4MTM5NDh9.uKd33I8z_TKubt3xugyHYi1k84B8HkFoL7SoBEuZNkA
+
+{
+  "quantity": 5
+}
+
+### Zaktualizowanie nieistniejącego zamówienie
+PATCH http://localhost:3002/api/orders/666
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoidXNlcjJAZ21haWwuY29tIiwiaWF0IjoxNzY1ODEwMzQ4LCJleHAiOjE3NjU4MTM5NDh9.uKd33I8z_TKubt3xugyHYi1k84B8HkFoL7SoBEuZNkA
+
+{
+  "quantity": 4
+}
+
+### Usuwanie zamówienia z id 1
+DELETE http://localhost:3002/api/orders/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoidXNlcjJAZ21haWwuY29tIiwiaWF0IjoxNzY1ODEwMzQ4LCJleHAiOjE3NjU4MTM5NDh9.uKd33I8z_TKubt3xugyHYi1k84B8HkFoL7SoBEuZNkA
+
+### Sprawdzanie zamówienia użytkownika 1 po usunięciu
+GET http://localhost:3002/api/orders/1
+
+### Usuwanie nieistniejącego zamówienia
+DELETE http://localhost:3002/api/orders/666
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoidXNlcjJAZ21haWwuY29tIiwiaWF0IjoxNzY1ODEwMzQ4LCJleHAiOjE3NjU4MTM5NDh9.uKd33I8z_TKubt3xugyHYi1k84B8HkFoL7SoBEuZNkA
+
