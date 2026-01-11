@@ -1,0 +1,70 @@
+*{
+    background-color: #bfb9df;
+}
+
+/*HOME*/
+
+.home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.home h1{
+    font-size: 50px;
+
+}
+
+/*BLOG*/
+
+/*ARTICLE*/
+
+
+/*DODAJ*/
+.dodaj{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 20px;
+}
+
+.title{
+    margin-bottom: 50px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.content{
+    display: flex;
+    align-items: flex-start;
+}
+
+.content textarea ,
+.content input{
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.dodaj button{
+    border-radius: 10px;
+    border: 1px solid #3a1e1e;
+    background: #daaaaa;
+    height: 40px;
+    width: 80px;
+    text-align: center;
+    color: #000000;
+    cursor: pointer;
+
+}
